@@ -78,8 +78,9 @@ class DeviseUi extends React.Component {
       const defaultValue = "Выберите тип устройства",
         model =
           event.target.value === defaultValue ? "" : "" + event.target.value;
-      if (model !== "" && this.state.value !== "")
+      if (model !== "" && this.state.value !== "") {
         this.setState({ disabled: false });
+      }
       this.setState({ model });
     };
 
@@ -104,6 +105,8 @@ class DeviseUi extends React.Component {
 
       deviceCondition[`${deviceNumber}`] = false;
 
+      values.push(deviceNumber);
+
       /* if you use mock data comment code below*/
 
       fetch("/api/device", {
@@ -114,8 +117,6 @@ class DeviseUi extends React.Component {
         .then((res) => res.json())
         .then(({ deviceManager }) => modelsDevices.push(deviceManager))
         .catch((e) => console.log(e));
-
-      values.push(deviceNumber);
 
       // if you use mock data uncomment code below
 
@@ -328,7 +329,7 @@ class DeviseUi extends React.Component {
            artificial data, just comment the code above and uncomment below,
           you will also need to comment fetch method in handleForm and uncomment below */}
 
-          {/*   {values.map((serialNumber, i) => {
+          {/*  {values.map((serialNumber, i) => {
             return (
               <div key={i} style={this.state.blockStyle}>
                 <p style={{ width: 200 }}>{`№ ${i + 1}: ${
