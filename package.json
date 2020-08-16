@@ -1,0 +1,48 @@
+{
+  "name": "device-managment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "nodemon": "nodemon --inspect ./src/docs/index.js",
+    "start": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexey-rgb/device-managment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexey-rgb/device-managment/issues"
+  },
+  "homepage": "https://github.com/alexey-rgb/device-managment#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
+    "cors": "^2.8.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sequelize": "^6.3.4"
+  }
+}
