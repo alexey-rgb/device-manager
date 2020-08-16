@@ -109,18 +109,18 @@ class DeviseUi extends React.Component {
 
       /* if you use mock data comment code below*/
 
-      /*  fetch("/api/device", {
+      fetch("/api/device", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ deviceNumber }),
       })
         .then((res) => res.json())
         .then(({ deviceManager }) => modelsDevices.push(deviceManager))
-        .catch((e) => console.log(e)); */
+        .catch((e) => console.log(e));
 
       // if you use mock data uncomment code below
 
-      modelsDevices.push(this.state.model);
+      // modelsDevices.push(this.state.model);
 
       this.setState({
         blockStyle,
@@ -139,7 +139,9 @@ class DeviseUi extends React.Component {
         modelsDevices = this.state.modelsDevices.filter(
           (device, i) => i !== idx
         ),
-        serialsNumbers = this.state.serialsNumbers.filter((device, i) => i !== idx);
+        serialsNumbers = this.state.serialsNumbers.filter(
+          (device, i) => i !== idx
+        );
       this.setState({ modelsDevices, serialsNumbers, serialNumber, model });
     };
 
@@ -157,7 +159,9 @@ class DeviseUi extends React.Component {
       const modelsDevices = this.state.modelsDevices.filter(
           (device, i) => i !== idx
         ),
-        serialsNumbers = this.state.serialsNumbers.filter((device, i) => i !== idx),
+        serialsNumbers = this.state.serialsNumbers.filter(
+          (device, i) => i !== idx
+        ),
         devicesData = this.state.devicesData;
 
       fetch("/api/device/" + idx, {
@@ -288,7 +292,7 @@ class DeviseUi extends React.Component {
 
           {/* Code below render information about device whith data from server */}
 
-          {/*           {devicesData[0] !== undefined
+          {devicesData[0] !== undefined
             ? devicesData[0].map((objDevice, i) => {
                 return (
                   <div key={i} style={this.state.blockStyle}>
@@ -323,13 +327,13 @@ class DeviseUi extends React.Component {
                   </div>
                 );
               })
-            : console.log("data not avaible")} */}
+            : console.log("data not avaible")}
 
           {/*  if the server broke down, you can still work with the user interface using
            artificial data, just comment the code above and uncomment below,
           you will also need to comment fetch method in handleForm and uncomment below */}
 
-          {serialsNumbers.map((serialNumber, i) => {
+          {/*  {serialsNumbers.map((serialNumber, i) => {
             return (
               <div key={i} style={this.state.blockStyle}>
                 <p style={{ width: 200 }}>{`№ ${i + 1}: ${
@@ -362,7 +366,7 @@ class DeviseUi extends React.Component {
                 </Button>
               </div>
             );
-          })}
+          })} */}
 
           {/* popup */}
 
