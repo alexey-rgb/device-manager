@@ -17,8 +17,8 @@ class DeviseUi extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
-      values: [],
+      serialNumber: "",
+      serialsNumbers: [],
       count: 0,
       model: "",
       modelsDevices: [],
@@ -69,7 +69,7 @@ class DeviseUi extends React.Component {
 
     const handleDeviceNumber = (event) => {
       if (this.state.model !== "") this.setState({ disabled: false });
-      this.setState({ value: event.target.value });
+      this.setState({ serialNumber: event.target.value });
     };
 
     /* get device type */
@@ -78,7 +78,7 @@ class DeviseUi extends React.Component {
       const defaultValue = "Выберите тип устройства",
         model =
           event.target.value === defaultValue ? "" : "" + event.target.value;
-      if (model !== "" && this.state.value !== "") {
+      if (model !== "" && this.state.serialNumber !== "") {
         this.setState({ disabled: false });
       }
       this.setState({ model });
@@ -95,32 +95,32 @@ class DeviseUi extends React.Component {
           width: "85%",
           marginTop: 40,
         },
-        deviceNumber = this.state.value,
+        deviceNumber = this.state.serialNumber,
         count = this.state.count + 1,
         isSubmitted = true,
         modelsDevices = this.state.modelsDevices,
         disabled = true,
-        values = this.state.values,
+        serialsNumbers = this.state.serialsNumbers,
         deviceCondition = this.state.deviceCondition;
 
       deviceCondition[`${deviceNumber}`] = false;
 
-      values.push(deviceNumber);
+      serialsNumbers.push(deviceNumber);
 
       /* if you use mock data comment code below*/
 
-      fetch("/api/device", {
+      /*  fetch("/api/device", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ deviceNumber }),
       })
         .then((res) => res.json())
         .then(({ deviceManager }) => modelsDevices.push(deviceManager))
-        .catch((e) => console.log(e));
+        .catch((e) => console.log(e)); */
 
       // if you use mock data uncomment code below
 
-      // modelsDevices.push(this.state.model);
+      modelsDevices.push(this.state.model);
 
       this.setState({
         blockStyle,
@@ -134,20 +134,20 @@ class DeviseUi extends React.Component {
     /* change device data */
 
     const handleChangeButton = (idx) => {
-      const value = this.state.values[idx],
+      const serialNumber = this.state.serialsNumbers[idx],
         model = this.state.modelsDevices[idx],
         modelsDevices = this.state.modelsDevices.filter(
           (device, i) => i !== idx
         ),
-        values = this.state.values.filter((device, i) => i !== idx);
-      this.setState({ modelsDevices, values, value, model });
+        serialsNumbers = this.state.serialsNumbers.filter((device, i) => i !== idx);
+      this.setState({ modelsDevices, serialsNumbers, serialNumber, model });
     };
 
     /* return fields to default value */
 
     const handleSendButton = () => {
       setTimeout(() => {
-        this.setState({ model: "", value: "" });
+        this.setState({ model: "", serialNumber: "" });
       }, 1000);
     };
 
@@ -157,7 +157,7 @@ class DeviseUi extends React.Component {
       const modelsDevices = this.state.modelsDevices.filter(
           (device, i) => i !== idx
         ),
-        values = this.state.values.filter((device, i) => i !== idx),
+        serialsNumbers = this.state.serialsNumbers.filter((device, i) => i !== idx),
         devicesData = this.state.devicesData;
 
       fetch("/api/device/" + idx, {
@@ -170,8 +170,8 @@ class DeviseUi extends React.Component {
 
       this.setState({
         modelsDevices,
-        values,
-        value: "",
+        serialsNumbers,
+        serialNumber: "",
         model: "",
         devicesData,
       });
@@ -223,9 +223,9 @@ class DeviseUi extends React.Component {
         opacity: this.state.opacity,
       },
       {
-        value,
+        serialNumber,
         model,
-        values,
+        serialsNumbers,
         devicesData,
         modelsDevices,
         deviceCondition,
@@ -255,7 +255,7 @@ class DeviseUi extends React.Component {
               type="text"
               required
               placeholder="insert device serial number"
-              value={value}
+              value={serialNumber}
               defaultValue="Hello world"
               inputProps={{ "aria-label": "description" }}
             />
@@ -288,15 +288,15 @@ class DeviseUi extends React.Component {
 
           {/* Code below render information about device whith data from server */}
 
-          {devicesData[0] !== undefined
+          {/*           {devicesData[0] !== undefined
             ? devicesData[0].map((objDevice, i) => {
                 return (
                   <div key={i} style={this.state.blockStyle}>
                     <p style={{ width: 200 }}>{`№ ${i + 1}: ${
                       objDevice.deviceNumber
-                    } / Series: ${values[i]}`}</p>
+                    } / Series: ${serialsNumbers[i]}`}</p>
                     <Button
-                      disabled={deviceCondition[`${values[i]}`]}
+                      disabled={deviceCondition[`${serialsNumbers[i]}`]}
                       onClick={() => handleDeleteButton(i)}
                       size="small"
                       variant="contained"
@@ -305,7 +305,7 @@ class DeviseUi extends React.Component {
                       Delete
                     </Button>
                     <Button
-                      disabled={deviceCondition[`${values[i]}`]}
+                      disabled={deviceCondition[`${serialsNumbers[i]}`]}
                       onClick={() => handleChangeButton(i)}
                       size="small"
                       variant="contained"
@@ -313,8 +313,8 @@ class DeviseUi extends React.Component {
                       Change
                     </Button>
                     <Button
-                      disabled={deviceCondition[`${values[i]}`]}
-                      onClick={() => handleTroubleButton(i, values[i])}
+                      disabled={deviceCondition[`${serialsNumbers[i]}`]}
+                      onClick={() => handleTroubleButton(i, serialsNumbers[i])}
                       variant="contained"
                       color="primary"
                     >
@@ -323,13 +323,13 @@ class DeviseUi extends React.Component {
                   </div>
                 );
               })
-            : console.log("data not avaible")}
+            : console.log("data not avaible")} */}
 
           {/*  if the server broke down, you can still work with the user interface using
            artificial data, just comment the code above and uncomment below,
           you will also need to comment fetch method in handleForm and uncomment below */}
 
-          {/*  {values.map((serialNumber, i) => {
+          {serialsNumbers.map((serialNumber, i) => {
             return (
               <div key={i} style={this.state.blockStyle}>
                 <p style={{ width: 200 }}>{`№ ${i + 1}: ${
@@ -362,7 +362,7 @@ class DeviseUi extends React.Component {
                 </Button>
               </div>
             );
-          })} */}
+          })}
 
           {/* popup */}
 
