@@ -1,4 +1,4 @@
-Under correction...
+Under correction... Now you can only watch code, whithout start project
 
 /*
 1. This application uses server data. If you want to test the user interface:
