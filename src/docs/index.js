@@ -12,12 +12,13 @@ app.use(express.json());
 app.use("/api/device", deviceRoutes);
 
 app.use((req, res, next) => {
-  res.sendFile("/index.html");
+  req.body;
+  // res.sendFile("index.js");
 });
 
 async function start() {
   try {
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
     app.listen(PORT);
   } catch (e) {
     console.log(e);

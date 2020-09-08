@@ -23,7 +23,9 @@ router.post("/", async (req, res) => {
     // create = build.save()
     const deviceManager = await Device.create({
       deviceNumber: req.body.deviceNumber,
+      model: req.body.model,
       done: false,
+      idx: req.body.id,
     });
     res.status(201).json({ deviceManager });
   } catch (e) {
@@ -51,11 +53,11 @@ router.put("/:id", async (req, res) => {
 
 // Удаление задачи
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:deviceNumber", async (req, res) => {
   try {
     const deviceManager = await Device.findAll({
       where: {
-        id: +req.params.id,
+        deviceNumber: req.params.deviceNumber,
       },
     });
     const device = deviceManager[0];
